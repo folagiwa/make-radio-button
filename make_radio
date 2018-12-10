@@ -1,0 +1,28 @@
+if(!function_exists('make_radio')){
+    function make_radio($data_radio, $default, $title = NULL)
+    {
+        //create placeholder and append container
+        $html = '<div class="row"><div class="form-group col-sm-9">';
+        //check for the supplied argument
+        //append to holder during iteration
+        if (is_array($data_radio)) {
+            $html .='<div class="control-label col-sm-6">'.$title.'</div>';
+            //run foreach statement
+            //create foreach loop for radio input using array
+            $html .='<div class="radio col-sm-6">';
+            foreach ($data_radio as $key => $val) {
+
+                $html .= '<div class="col-sm-12">';
+                $html .= '<input type="radio"  name="'.$val['name'].'" id="'.$val['id'].'" value="' .$val['value'].'"';
+                $html .= ($val['value']==$default) ? 'checked':'';
+                $html .='>  <label for="' . $val['id'] . '">' . $val['label'] . '</label>';
+                $html .='</div>';
+
+            }$html .='</div>';
+        } else {
+            echo 'make radio expects an array';
+        }
+        $html .= '</div></div>';
+        return $html;
+    }
+}
